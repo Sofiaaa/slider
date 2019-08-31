@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       
+
+        .slider {
+            margin: auto;
+            width: 1024px;
+            height: 640px;
+            border: 1px solid black;
+            position:relative;
+            
+        }
+        .slider .slide {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position:absolute;
+            width:1024px;
+            height: 640px;
+            visibility:hidden;
+            opacity:0;
+        }
+        .slide.fade-in {
+            opacity: 1;
+            visibility:visible;
+            transition:opacity 10s;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="sliderA" class="slider">
+        <div class="slide" >
+        
+        </div>
+    </div>
+   <script src="slider.js"></script> 
+</body>
+</html>
