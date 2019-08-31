@@ -1,8 +1,3 @@
-const images=[
-    ,
-    'images/summer-2.jpg',
-    'images/summer-3.jpg'
-];
 
 let slides_parameters=[
     {
@@ -12,12 +7,12 @@ let slides_parameters=[
             text: 'The sun and the sea',
             color: '#C90',
             bgcolor: '#000',
-            halign: 'right',    // ή right ή center
-            valign: 'top',     // ή bottom ή center
+            halign: 'right',   
+            valign: 'top',     
             fontsize: '18px'
         },
         entry: {
-            fx: 'fade-in',      // ή toright ή fadein
+            fx: 'fade-in',      
             duration: 10,
         }
     },
@@ -28,12 +23,12 @@ let slides_parameters=[
             text: 'The beach',
             color: '#C90',
             bgcolor: '#000',
-            halign: 'left',    // ή right ή center
-            valign: 'top',     // ή bottom ή center
+            halign: 'left',    
+            valign: 'top',     
             fontsize: '18px'
         },
         entry: {
-            fx: 'fade-in',      // ή toright ή fadein
+            fx: 'fade-in',      
             duration: 5,
         }
     },
@@ -44,12 +39,12 @@ let slides_parameters=[
             text: 'The ocean view',
             color: '#C90',
             bgcolor: '#000',
-            halign: 'right',    // ή right ή center
-            valign: 'top',     // ή bottom ή center
+            halign: 'right',    
+            valign: 'top',     
             fontsize: '18px'
         },
         entry: {
-            fx: 'fade-in',      // ή toright ή fadein
+            fx: 'fade-in',     
             duration: 10,
         }
     },
@@ -60,12 +55,12 @@ let slides_parameters=[
             text: 'waves',
             color: '#C90',
             bgcolor: '#000',
-            halign: 'right',    // ή right ή center
-            valign: 'top',     // ή bottom ή center
+            halign: 'right',    
+            valign: 'top',    
             fontsize: '18px'
         },
         entry: {
-            fx: 'fade-in',      // ή toright ή fadein
+            fx: 'fade-in',     
             duration: 10,
         }
     },
@@ -76,12 +71,12 @@ let slides_parameters=[
             text: 'Tropical Island',
             color: '#C90',
             bgcolor: '#000',
-            halign: 'right',    // ή right ή center
-            valign: 'top',     // ή bottom ή center
+            halign: 'right',    
+            valign: 'top',     
             fontsize: '18px'
         },
         entry: {
-            fx: 'fade-in',      // ή toright ή fadein
+            fx: 'fade-in',     
             duration: 10,
         }
     }
@@ -97,7 +92,7 @@ function Slider( elementId , configurationObject ){
    
     for(let i=1; i<configurationObject.length; i++) {
         const clonos = activeElement.cloneNode(true);
-       // clonos.style.backgroundImage = `url(${configurationObject[i].img_url})`;
+      
 
         const activeTitle=document.createElement("span");
         const myText=document.createTextNode(configurationObject[i].title.text);
@@ -109,8 +104,7 @@ function Slider( elementId , configurationObject ){
         
         document.getElementById(elementId).append(clonos);
     }
-    //activeElement.style.backgroundImage=`url(${configurationObject[0].img_url})`;
-    //activeElement.setAttribute("style",`  opacity: 0; visibility:hidden; `);
+    
 
     const activeTitle=document.createElement("span");
     const myText=document.createTextNode(configurationObject[0].title.text);
@@ -127,8 +121,7 @@ function Slider( elementId , configurationObject ){
     for(let i=1;i<configurationObject.length;i++){
     
         setTimeout(function (){
-            //if(i==configurationObject.length)
-            //i=0;
+         
             let nextElement=activeElement.nextElementSibling;
             if (!nextElement) {
                 nextElement = document.querySelector(`#${elementId} div:first-of-type`);
