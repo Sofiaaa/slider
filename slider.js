@@ -11,7 +11,7 @@ let slides_parameters=[
             fontsize: '18px'
         },
         entry: {
-            fx: 'fade-in',      
+            fx: 'toright',      
             duration: 5,
         }
     },
@@ -27,7 +27,7 @@ let slides_parameters=[
             fontsize: '18px'
         },
         entry: {
-            fx: 'fade-in',     
+            fx: 'toright',     
             duration: 10,
         }
     },
@@ -43,7 +43,7 @@ let slides_parameters=[
             fontsize: '18px'
         },
         entry: {
-            fx: 'fade-in',      
+            fx: 'toright',      
             duration: 5,
         }
     },
@@ -59,7 +59,7 @@ let slides_parameters=[
             fontsize: '18px'
         },
         entry: {
-            fx: 'fade-in',     
+            fx: 'toright',     
             duration: 10,
         }
     },
@@ -75,7 +75,7 @@ let slides_parameters=[
             fontsize: '18px'
         },
         entry: {
-            fx: 'fade-in',     
+            fx: 'toright',     
             duration: 5,
         }
     }
@@ -94,7 +94,7 @@ function Slider( elementId , configurationObject ){
         const activeTitle=document.createElement("span");
         const myText=document.createTextNode(configurationObject[i].title.text);
         activeTitle.append(myText);
-        activeTitle.setAttribute("style",` position:absolute; color:${configurationObject[i].title.color}; background-color:${configurationObject[i].title.bgcolor};
+        activeTitle.setAttribute("style",`position:absolute; color:${configurationObject[i].title.color}; background-color:${configurationObject[i].title.bgcolor};
          ${configurationObject[i].title.halign}:10px;
          ${configurationObject[i].title.valign}:10px; font-size:${configurationObject[i].title.fontsize};`);
         clonos.appendChild(activeTitle);
@@ -122,14 +122,36 @@ function Slider( elementId , configurationObject ){
         var i;  
         var x = document.getElementsByClassName("slide");
          for (i = 0; i < x.length; i++) {
-             x[i].setAttribute("style","opacity: 0; visibility:hidden;"); 
-            }
+             x[i].setAttribute("style","opacity: 0; visibility:hidden; position:absolute; left:-100%;"); 
+           }
         if (myIndex == x.length) {myIndex = 0;} 
+       // myIndex=myIndex%x.length;
         var dur=configurationObject[myIndex].duration;
-        myIndex++;
         
-        x[myIndex-1].setAttribute("style",` background-image:url(${configurationObject[myIndex-1].img_url}); transition:opacity ${configurationObject[myIndex-1].entry.duration}s; opacity: 1; visibility:visible;`); 
+        
+        if(configurationObject[myIndex].entry.fx=="fade-in"){
+            x[myIndex].setAttribute("style",` background-image:url(${configurationObject[myIndex].img_url}); 
+            transition:opacity ${configurationObject[myIndex].entry.duration}s; opacity: 1; visibility:visible; left:0%; `); 
+        }else if (configurationObject[myIndex].entry.fx=="toright"){
+           if(myIndex-1<0){
+               x[x.length-1].setAttribute("style",` background-image:url(${configurationObject[x.length-1].img_url}); opacity: 1; visibility:visible; left:0%;`); 
+               x[x.length-1].setAttribute("style",` background-image:url(${configurationObject[x.length-1].img_url});
+               transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:100%;`); 
+              // x[x.length-1].setAttribute("style",` background-image:url(${configurationObject[x.length-1].img_url}); opacity: 0; visibility:hidden; left:100%;`); 
+
+            }else{
+                x[myIndex-1].setAttribute("style",` background-image:url(${configurationObject[myIndex-1].img_url}); opacity: 1; visibility:visible; left:0%;`); 
+               x[myIndex-1].setAttribute("style",` background-image:url(${configurationObject[myIndex-1].img_url});
+               transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:100%;`); 
+              // x[myIndex-1].setAttribute("style",` background-image:url(${configurationObject[myIndex-1].img_url}); opacity: 0; visibility:hidden; left:100%;`); 
+
+            }
+            x[myIndex].setAttribute("style",` background-image:url(${configurationObject[myIndex].img_url}); 
+            transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-out; opacity: 1; visibility:visible; left:0%;`); 
+        }
+        myIndex++;
         setTimeout(delay,dur*1000);    
+
     
     }
         
