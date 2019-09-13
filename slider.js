@@ -86,6 +86,7 @@ let slides_parameters=[
 Slider('sliderA',slides_parameters);
 
 function Slider( elementId , configurationObject ){
+    document.body.setAttribute("style","overflow:hidden;");
     let activeElement=document.querySelector('#'+ elementId + ' .slide');
    
     for(let i=1; i<configurationObject.length; i++) {
@@ -122,32 +123,29 @@ function Slider( elementId , configurationObject ){
         var i;  
         var x = document.getElementsByClassName("slide");
          for (i = 0; i < x.length; i++) {
-             x[i].setAttribute("style","opacity: 0; visibility:hidden; position:absolute; left:-100%;"); 
+             x[i].setAttribute("style","opacity: 0; visibility:hidden; left:-256px;"); 
            }
         if (myIndex == x.length) {myIndex = 0;} 
-       // myIndex=myIndex%x.length;
         var dur=configurationObject[myIndex].duration;
         
         
         if(configurationObject[myIndex].entry.fx=="fade-in"){
             x[myIndex].setAttribute("style",` background-image:url(${configurationObject[myIndex].img_url}); 
-            transition:opacity ${configurationObject[myIndex].entry.duration}s; opacity: 1; visibility:visible; left:0%; `); 
+            transition:opacity ${configurationObject[myIndex].entry.duration}s; opacity: 1; visibility:visible; left:256px; `); 
         }else if (configurationObject[myIndex].entry.fx=="toright"){
            if(myIndex-1<0){
-               x[x.length-1].setAttribute("style",` background-image:url(${configurationObject[x.length-1].img_url}); opacity: 1; visibility:visible; left:0%;`); 
+               x[x.length-1].setAttribute("style",` background-image:url(${configurationObject[x.length-1].img_url}); opacity: 1; visibility:visible; left:256px;`); 
                x[x.length-1].setAttribute("style",` background-image:url(${configurationObject[x.length-1].img_url});
-               transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:100%;`); 
-              // x[x.length-1].setAttribute("style",` background-image:url(${configurationObject[x.length-1].img_url}); opacity: 0; visibility:hidden; left:100%;`); 
-
+               transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:768px;`); 
+        
             }else{
-                x[myIndex-1].setAttribute("style",` background-image:url(${configurationObject[myIndex-1].img_url}); opacity: 1; visibility:visible; left:0%;`); 
+                x[myIndex-1].setAttribute("style",` background-image:url(${configurationObject[myIndex-1].img_url}); opacity: 1; visibility:visible; left:256px;`); 
                x[myIndex-1].setAttribute("style",` background-image:url(${configurationObject[myIndex-1].img_url});
-               transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:100%;`); 
-              // x[myIndex-1].setAttribute("style",` background-image:url(${configurationObject[myIndex-1].img_url}); opacity: 0; visibility:hidden; left:100%;`); 
-
+               transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:768px;`); 
+            
             }
             x[myIndex].setAttribute("style",` background-image:url(${configurationObject[myIndex].img_url}); 
-            transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-out; opacity: 1; visibility:visible; left:0%;`); 
+            transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-out; opacity: 1; visibility:visible; left:256px;`); 
         }
         myIndex++;
         setTimeout(delay,dur*1000);    
