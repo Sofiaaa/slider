@@ -11,7 +11,7 @@ let slides_parameters=[
             fontsize: '18px'
         },
         entry: {
-            fx: 'toright',      
+            fx: 'fade-in',      
             duration: 5,
         }
     },
@@ -43,7 +43,7 @@ let slides_parameters=[
             fontsize: '18px'
         },
         entry: {
-            fx: 'toright',      
+            fx: 'fade-in',      
             duration: 5,
         }
     },
@@ -127,23 +127,23 @@ function Slider( elementId , configurationObject ){
            }
         if (myIndex == x.length) {myIndex = 0;} 
         var dur=configurationObject[myIndex].duration;
-        
+        let prev;
+        if(myIndex-1<0)
+            prev=x.length-1;
+        else prev=myIndex-1;
         
         if(configurationObject[myIndex].entry.fx=="fade-in"){
+           
+            x[prev].setAttribute("style",` background-image:url(${configurationObject[prev].img_url}); opacity: 1; visibility:visible; left:256px;`); 
+            x[prev].setAttribute("style",` background-image:url(${configurationObject[prev].img_url});
+            transition:opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:256px;`); 
             x[myIndex].setAttribute("style",` background-image:url(${configurationObject[myIndex].img_url}); 
             transition:opacity ${configurationObject[myIndex].entry.duration}s; opacity: 1; visibility:visible; left:256px; `); 
+
         }else if (configurationObject[myIndex].entry.fx=="toright"){
-           if(myIndex-1<0){
-               x[x.length-1].setAttribute("style",` background-image:url(${configurationObject[x.length-1].img_url}); opacity: 1; visibility:visible; left:256px;`); 
-               x[x.length-1].setAttribute("style",` background-image:url(${configurationObject[x.length-1].img_url});
-               transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:768px;`); 
-        
-            }else{
-                x[myIndex-1].setAttribute("style",` background-image:url(${configurationObject[myIndex-1].img_url}); opacity: 1; visibility:visible; left:256px;`); 
-               x[myIndex-1].setAttribute("style",` background-image:url(${configurationObject[myIndex-1].img_url});
-               transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:768px;`); 
-            
-            }
+            x[prev].setAttribute("style",` background-image:url(${configurationObject[prev].img_url}); opacity: 1; visibility:visible; left:256px;`); 
+            x[prev].setAttribute("style",` background-image:url(${configurationObject[prev].img_url});
+            transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:768px;`); 
             x[myIndex].setAttribute("style",` background-image:url(${configurationObject[myIndex].img_url}); 
             transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-out; opacity: 1; visibility:visible; left:256px;`); 
         }
