@@ -40,7 +40,7 @@ let slides_parameters=[
             bgcolor: '#000',
             halign: 'right',    
             valign: 'top',     
-            fontsize: '18px'
+            fontsize: '22px'
         },
         entry: {
             fx: 'fade-in',      
@@ -72,7 +72,7 @@ let slides_parameters=[
             bgcolor: '#000',
             halign: 'right',    
             valign: 'top',    
-            fontsize: '18px'
+            fontsize: '22px'
         },
         entry: {
             fx: 'toright',     
@@ -86,7 +86,8 @@ let slides_parameters=[
 Slider('sliderA',slides_parameters);
 
 function Slider( elementId , configurationObject ){
-    document.body.setAttribute("style","overflow:hidden;");
+   // document.body.setAttribute("style","overflow:hidden;");
+    document.querySelector('#'+elementId+'.slider').style.overflow="hidden";
     let activeElement=document.querySelector('#'+ elementId + ' .slide');
    
     for(let i=1; i<configurationObject.length; i++) {
@@ -111,9 +112,6 @@ function Slider( elementId , configurationObject ){
      activeElement.appendChild(activeTitle);
    
   
-    if (configurationObject[0].entry.fx=='fade-in'){
-        activeElement.setAttribute("style",`background-image:url(${configurationObject[0].img_url}); transition:opacity ${configurationObject[0].entry.duration}s; opacity: 1; visibility:visible;` );
-    }
  
     myIndex=0;
 
@@ -123,7 +121,7 @@ function Slider( elementId , configurationObject ){
         var i;  
         var x = document.getElementsByClassName("slide");
          for (i = 0; i < x.length; i++) {
-             x[i].setAttribute("style","opacity: 0; visibility:hidden; left:-256px;"); 
+             x[i].setAttribute("style","opacity: 0; visibility:hidden; left:-512px;"); 
            }
         if (myIndex == x.length) {myIndex = 0;} 
         var dur=configurationObject[myIndex].duration;
@@ -134,18 +132,18 @@ function Slider( elementId , configurationObject ){
         
         if(configurationObject[myIndex].entry.fx=="fade-in"){
            
-            x[prev].setAttribute("style",` background-image:url(${configurationObject[prev].img_url}); opacity: 1; visibility:visible; left:256px;`); 
+            x[prev].setAttribute("style",` background-image:url(${configurationObject[prev].img_url}); opacity: 1; visibility:visible; left:0px;`); 
             x[prev].setAttribute("style",` background-image:url(${configurationObject[prev].img_url});
-            transition:opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:256px;`); 
+            transition:opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:0px;`); 
             x[myIndex].setAttribute("style",` background-image:url(${configurationObject[myIndex].img_url}); 
-            transition:opacity ${configurationObject[myIndex].entry.duration}s; opacity: 1; visibility:visible; left:256px; `); 
+            transition:opacity ${configurationObject[myIndex].entry.duration}s; opacity: 1; visibility:visible; left:0px; `); 
 
         }else if (configurationObject[myIndex].entry.fx=="toright"){
-            x[prev].setAttribute("style",` background-image:url(${configurationObject[prev].img_url}); opacity: 1; visibility:visible; left:256px;`); 
+            x[prev].setAttribute("style",` background-image:url(${configurationObject[prev].img_url}); opacity: 1; visibility:visible; left:0px;`); 
             x[prev].setAttribute("style",` background-image:url(${configurationObject[prev].img_url});
-            transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:768px;`); 
+            transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-in; opacity: 0; visibility:visible; left:512px;`); 
             x[myIndex].setAttribute("style",` background-image:url(${configurationObject[myIndex].img_url}); 
-            transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-out; opacity: 1; visibility:visible; left:256px;`); 
+            transition:left ${configurationObject[myIndex].entry.duration}s, opacity ${configurationObject[myIndex].entry.duration}s ease-out; opacity: 1; visibility:visible; left:0px;`); 
         }
         myIndex++;
         setTimeout(delay,dur*1000);    
@@ -157,3 +155,4 @@ function Slider( elementId , configurationObject ){
      
     
 }
+
